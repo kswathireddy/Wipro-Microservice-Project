@@ -1,0 +1,44 @@
+package com.wipro.swathi.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.wipro.swathi.demo.dto.Booking;
+import com.wipro.swathi.demo.entity.Booking;
+import com.wipro.swathi.demo.service.BookingService;
+
+@RestController
+@RequestMapping("/api/v1/Booking")
+public class Bookingcontroller {
+	
+	@Autowired
+	private BookingService bookingService;
+	
+	
+	@PostMapping("/addBooking")
+	public Booking addBooking(@RequestBody Booking booking) {
+		return bookingService.addBooking(booking);
+	}
+	
+	
+
+	
+	@PutMapping("/{id}/cancel")
+	public Booking cancelBooking(@PathVariable Long id) {
+		return bookingService.cancel(id);
+	}
+	
+	 @GetMapping("/{id}")
+	    public Booking getBookingDetails(@PathVariable Long id) {
+	       return bookingService.getById(id);
+	    }
+
+	
+	 
+}

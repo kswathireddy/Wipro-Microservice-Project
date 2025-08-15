@@ -1,0 +1,35 @@
+package com.wipro.travelAgency.swathi.demo.entity;
+
+import com.wipro.travelAgency.swathi.demo.enums.Method;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Payment {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long paymentId;
+	    private Long bookingId;
+	    private Long amount;
+	    @Enumerated(EnumType.STRING)
+	    private Method method;
+	    // getters and setters
+	    
+	   
+	    private Long userId;      // Store only the ID
+	    private Long packageId;
+		
+
+}

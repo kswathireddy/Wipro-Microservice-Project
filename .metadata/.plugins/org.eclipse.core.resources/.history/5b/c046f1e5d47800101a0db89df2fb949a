@@ -1,0 +1,23 @@
+package com.wipro.swathi.demo.feign;
+
+
+
+	import org.springframework.cloud.openfeign.FeignClient;
+	import org.springframework.data.domain.Page;
+	import org.springframework.web.bind.annotation.*;
+
+	
+
+
+
+
+	@FeignClient(name = "DESTINATION-SERVICE", path = "/api/v1/destinations")
+	public interface Packagefeign {
+
+		 @GetMapping("/{id}")
+		    DestinationWrapper getDestinationById(@PathVariable("id") Long id);
+
+		    @GetMapping("/all")
+		    Page<DestinationWrapper> getAllDestinations(@RequestParam int page, @RequestParam int size);
+		}
+}

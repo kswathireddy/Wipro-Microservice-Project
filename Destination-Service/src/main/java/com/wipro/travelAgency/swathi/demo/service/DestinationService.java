@@ -1,0 +1,20 @@
+package com.wipro.travelAgency.swathi.demo.service;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import com.wipro.travelAgency.swathi.demo.entity.Destination;
+
+public interface DestinationService {
+
+	Destination addDestination(Destination destination);
+
+	Page<Destination> getAll(Pageable pageable);
+
+	void deleteDest(Long id);
+
+	Destination getById(Long id);
+
+	Destination updateDest(Long id, Destination destination);
+
+}

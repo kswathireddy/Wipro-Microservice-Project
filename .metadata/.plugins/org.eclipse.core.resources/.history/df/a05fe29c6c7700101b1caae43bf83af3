@@ -1,0 +1,14 @@
+package com.wipro.swathi.demo.feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.wipro.swathi.demo.entity.Payment;
+
+@FeignClient(name="")
+public class BookingInterface {
+	@GetMapping("/getById/{id}")
+	public Payment getById(@PathVariable Long id);
+
+}

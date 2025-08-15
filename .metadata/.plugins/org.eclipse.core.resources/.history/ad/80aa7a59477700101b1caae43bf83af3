@@ -1,0 +1,9 @@
+package com.wipro.swathi.demo.service;
+
+import com.wipro.swathi.demo.entity.Destination;
+
+public interface DestinationService {
+
+	Destination addDestination(Destination destination);
+
+}

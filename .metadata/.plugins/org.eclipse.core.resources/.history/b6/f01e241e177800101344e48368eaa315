@@ -1,0 +1,65 @@
+spring.application.name=Destination-Service
+server.port=8290
+spring.config.import=configserver:http://localhost:9095
+eureka.instance.prefer-ip-address=true
+eureka.instance.hostname=localhost
+
+eureka.client.fetch-registry=true
+eureka.client.register-with-eureka=true
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+
+
+
+spring.datasource.url=jdbc:mysql://localhost:3306/Destination_service_db
+
+spring.datasource.username=root
+spring.datasource.password=Swathi@1327
+
+# Hibernate DDL auto (create/update/validate/none)
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+
+# Show SQL queries in console (optional)
+spring.jpa.show-sql=true
+
+
+spring.jpa.properties.hibernate.format_sql=true
+
+logging.file.name=logs/app.log
+# Zipkin Server URL
+spring.zipkin.base-url=http://localhost:9411/
+
+# Send 100% of traces (for debugging)
+spring.sleuth.sampler.probability=1.0
+
+management.endpoints.web.exposure.include=health,info,metrics,httptrace
+
+# Distributed Tracing Configuration
+management.tracing.sampling.probability=1.0
+management.zipkin.tracing.endpoint=http://localhost:9411/api/v2/spans
+# Log pattern to include traceId and spanId for Spring Boot 3.x
+logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} [%X{traceId:-},%X{spanId:-}] - %msg%n
+ 
+# Additional tracing configuration
+management.tracing.enabled=true
+
+ 
+# Ensure proper service name propagation
+management.tracing.baggage.remote-fields=service-name
+spring.cloud.compatibility-verifier.enabled=false
+#Registers the circuit breaker with Spring Boot’s health system so Actuator can monitor it.
+resilience4j.circuitbreaker.configs.default.register-health-indicator=true
+#The breaker looks at the last 10 calls to decide whether to open or stay closed.
+resilience4j.circuitbreaker.configs.default.sliding-window-size=10
+#Don’t judge the service until at least 5 calls have been made.
+resilience4j.circuitbreaker.configs.default.minimum-number-of-calls=5
+#When the breaker is HALF_OPEN, only let 3 test calls go through before deciding if the service is healthy again.
+resilience4j.circuitbreaker.configs.default.permitted-number-of-calls-in-half-open-state=3
+#The breaker will automatically try again after a wait time — you don’t have to manually reset it.
+resilience4j.circuitbreaker.configs.default.automatic-transition-from-open-to-half-open-enabled=true
+#If the breaker is OPEN, wait 5 seconds before testing again.
+resilience4j.circuitbreaker.configs.default.wait-duration-in-open-state=5s
+# If 50% or more of the calls fail in the window, the breaker will OPEN.
+resilience4j.circuitbreaker.configs.default.failure-rate-threshold=50
+#Keep the last 10 events (success, failure, state changes) in memory for logging and monitoring.
+resilience4j.circuitbreaker.configs.default.event-consumer-buffer-size=10

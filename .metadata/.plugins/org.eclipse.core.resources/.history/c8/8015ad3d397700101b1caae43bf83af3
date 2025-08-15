@@ -1,0 +1,10 @@
+package com.wipro.swathi.demo.repository;
+
+import org.hibernate.internal.util.type.PrimitiveWrapperHelper.IntegerDescriptor;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.wipro.swathi.demo.entity.User;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+
+}

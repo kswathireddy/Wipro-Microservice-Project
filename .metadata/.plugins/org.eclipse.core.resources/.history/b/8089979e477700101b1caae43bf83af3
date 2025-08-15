@@ -1,0 +1,30 @@
+package com.wipro.swathi.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.wipro.swathi.demo.entity.Destination;
+import com.wipro.swathi.demo.repo.DestinationRepository;
+
+@Service
+public class DestinationServiceImpl implements DestinationService {
+
+	
+	@Autowired
+	private DestinationRepository destinationRepository;
+	
+	@Override
+	public Destination addDestination(Destination destination) {
+		// TODO Auto-generated method stub
+		return destinationRepository.save(destination);
+	}
+
+	@Override
+	public Page<Destination> getAll(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return destinationRepository.findAll(pageable);
+	}
+
+}

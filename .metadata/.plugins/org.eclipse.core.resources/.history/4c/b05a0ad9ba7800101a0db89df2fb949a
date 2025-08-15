@@ -1,0 +1,60 @@
+package com.wipro.swathi.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.wipro.swathi.demo.CustomException;
+import com.wipro.swathi.demo.dto.BookingDTO;
+import com.wipro.swathi.demo.dto.PackageDTO;
+import com.wipro.swathi.demo.dto.UserDTO;
+import com.wipro.swathi.demo.entity.Booking;
+import com.wipro.swathi.demo.enums.Status;
+import com.wipro.swathi.demo.feign.PackageService;
+import com.wipro.swathi.demo.feign.UserService;
+import com.wipro.swathi.demo.repo.BookingRepo;
+
+@Service
+public class BookingServiceImpl implements BookingService {
+    
+    @Autowired
+    private BookingRepo bookingRepository;
+    
+    @Autowired
+    private PackageService packageService;
+    
+    @Autowired
+    private UserService userService;
+
+    @Override
+    public BookingDTO getById(Long id) {
+        Booking booking = bookingRepository.findById(id)
+            .orElseThrow(() -> new CustomException("Booking not found: " + id));
+
+        UserDTO user = userService.getUserById(booking.getUserId());
+        PackageDTO pack = packageService.getPackageById(booking.getPackageId());
+
+        return new BookingDTO(
+            booking.getId(),
+            booking.getStartDate(),
+            booking.getStatus(),
+            user,
+            pack
+        );
+    }
+
+    @Override
+    public Booking cancel(Long id) {
+        Booking booking = bookingRepository.findById(id)
+                .orElseThrow(() -> new CustomException("Booking not found: " + id));
+
+        booking.setStatus(Status.CANCELLED);
+        return bookingRepository.save(booking);
+    }
+
+    @Override
+    public Booking addBooking(BookingDTO bookingDTO) {
+        
+
+        return bookingRepository.save(bookingDTO);
+    }
+}

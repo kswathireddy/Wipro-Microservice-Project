@@ -1,0 +1,42 @@
+package com.wipro.swathi.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.wipro.swathi.demo.CustomException;
+import com.wipro.swathi.demo.entity.Booking;
+import com.wipro.swathi.demo.enums.Status;
+import com.wipro.swathi.demo.repo.BookingRepo;
+
+@Service
+public class BookingServiceImpl implements BookingService {
+	
+	@Autowired
+	private BookingRepo bookingRepository;
+
+	@Override
+	public Booking addBooking(Booking booking) {
+		// TODO Auto-generated method stub
+		return bookingRepository.save(booking);
+	}
+
+	@Override
+	public Booking getById(Long id) {
+		// TODO Auto-generated method stub
+		return bookingRepository.findById(id).orElseThrow(()-> new CustomException("Booking not found:"+id));
+	}
+
+	@Override
+	public Booking cancel(Long id) {
+		// TODO Auto-generated method stub
+		Booking booking = bookingRepository.findById(id)
+		        .orElseThrow(() -> new CustomException("Booking is cancelled: " + id));
+
+		    booking.setStatus(Status.CANCELLED);
+		    return bookingRepository.save(booking);
+		}
+	}
+	
+	
+
+

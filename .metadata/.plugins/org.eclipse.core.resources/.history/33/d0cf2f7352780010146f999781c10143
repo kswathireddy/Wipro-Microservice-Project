@@ -1,0 +1,8 @@
+# Import config from Config Server
+spring.config.import=optional:configserver:http://localhost:9095
+
+# Application Name
+spring.application.name=Booking-Service
+
+# Server Port (if you want to override Config Server value locally)
+server.port=9398

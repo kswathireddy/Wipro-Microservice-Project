@@ -1,0 +1,9 @@
+package com.wipro.swathi.demo.service;
+
+import com.wipro.swathi.demo.entity.User;
+
+public interface UserService {
+
+	User addUser(User user);
+
+}

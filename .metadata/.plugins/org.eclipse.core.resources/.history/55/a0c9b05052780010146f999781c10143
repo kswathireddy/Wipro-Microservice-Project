@@ -1,0 +1,28 @@
+# Spring Boot app
+spring.application.name=Booking-Service
+server.port=9398
+
+# Database
+spring.datasource.url=jdbc:mysql://localhost:3306/Booking_service_db
+spring.datasource.username=root
+spring.datasource.password=Swathi@1327
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# Eureka Discovery
+eureka.instance.prefer-ip-address=true
+eureka.instance.hostname=localhost
+eureka.client.fetch-registry=true
+eureka.client.register-with-eureka=true
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+
+# Zipkin / Sleuth
+management.tracing.sampling.probability=1.0
+management.zipkin.tracing.endpoint=http://localhost:9411/api/v2/spans
+management.tracing.enabled=true
+management.zipkin.tracing.enabled=true
+
+
+

@@ -1,0 +1,29 @@
+package com.wipro.swathi.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.wipro.swathi.demo.entity.Payment;
+import com.wipro.swathi.demo.repo.PaymentRepository;
+
+@Service
+public class PaymentServiceImpl implements PaymentService{
+	
+	@Autowired
+	private PaymentRepository paymentRepository;
+
+	@Override
+	public Payment addPayment(Payment payment) {
+		// TODO Auto-generated method stub
+		return paymentRepository.save(payment);
+	}
+
+	@Override
+	public Payment getById(Long id) {
+		// TODO Auto-generated method stub
+		return paymentRepository.findById(id).orElseThrow(()->new RuntimeException("payment not done:"+id));
+	}
+	
+	
+
+}

@@ -1,0 +1,72 @@
+package com.wipro.swathi.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.wipro.swathi.demo.CustomException;
+import com.wipro.swathi.demo.dto.BookingDTO;
+import com.wipro.swathi.demo.dto.DestionationDTO;
+
+import com.wipro.swathi.demo.dto.PackageTourDTO;
+import com.wipro.swathi.demo.dto.UserDTO;
+import com.wipro.swathi.demo.entity.Booking;
+import com.wipro.swathi.demo.enums.Status;
+
+import com.wipro.swathi.demo.feign.PackageService;
+import com.wipro.swathi.demo.feign.UserService;
+import com.wipro.swathi.demo.repo.BookingRepo;
+
+@Service
+public class BookingServiceImpl implements BookingService {
+    
+    @Autowired
+    private BookingRepo bookingRepository;
+    
+    @Autowired
+    private PackageService packageService;
+    
+    @Autowired
+    private UserService userService;
+   
+
+   
+
+    @Override
+    public Booking cancel(Long id) {
+        Booking booking = bookingRepository.findById(id)
+                .orElseThrow(() -> new CustomException("Booking not found: " + id));
+
+        booking.setStatus(Status.CANCELLED);
+        return bookingRepository.save(booking);
+    }
+
+    @Override
+    public Booking addBooking(Booking bookingDTO) {
+        
+
+        return bookingRepository.save(bookingDTO);
+    }
+
+	@Override
+	public BookingDTO getById(Long id) {
+		// TODO Auto-generated method stub
+		Booking booking = bookingRepository.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Booking not found with ID: " + id));
+
+	    // 2. Fetch user info from User Service using Feign client
+	    UserDTO user = userService.getById(booking.getUserId());
+
+	    // 3. Fetch package info from Package Service using Feign client
+	    PackageTourDTO packageInfo = packageService.getById(booking.getPackageId());
+
+	    // 4. Prepare BookingDTO
+	    BookingDTO bookingDTO = new BookingDTO();
+	    bookingDTO.setId(booking.getId());
+	    bookingDTO.setUser(user);
+	    bookingDTO.setPackageInfo(packageInfo);
+	    bookingDTO.setStartDate(booking.getStartDate());
+	    bookingDTO.setStatus(booking.getStatus());
+
+	    return bookingDTO;
+	}
+}

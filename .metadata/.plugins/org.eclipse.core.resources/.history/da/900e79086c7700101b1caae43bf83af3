@@ -1,0 +1,21 @@
+package com.wipro.swathi.demo.entity;
+
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Payment {
+
+	    private Long bookingId;
+	    private Long amount;
+	    private String method;
+	    // getters and setters
+	
+
+
+}

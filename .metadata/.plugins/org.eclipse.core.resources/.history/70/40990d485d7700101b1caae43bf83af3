@@ -1,0 +1,16 @@
+package com.wipro.swathi.demo.service;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import com.wipro.swathi.demo.entity.PackageTour;
+
+public interface PackageService {
+
+	Package addPackage(PackageTour packages);
+
+	Package getById(Long id);
+
+	Page<Package> getAll(Pageable pageable);
+
+}

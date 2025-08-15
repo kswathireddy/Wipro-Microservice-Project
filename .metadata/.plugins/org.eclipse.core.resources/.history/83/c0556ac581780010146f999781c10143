@@ -1,0 +1,16 @@
+package com.wipro.swathi.demo.service;
+
+import com.wipro.swathi.demo.dto.BookingDTO;
+import com.wipro.swathi.demo.entity.Booking;
+
+public interface BookingService {
+
+	BookingDTO addBooking(Booking booking);
+
+	BookingDTO getById(Long id);
+
+	BookingDTO cancel(Long id);
+
+	Booking addBooking(BookingDTO booking);
+
+}

@@ -1,0 +1,5 @@
+package com.wipro.swathi.demo.repo;
+
+public interface BookingRepository {
+
+}

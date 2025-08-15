@@ -1,0 +1,14 @@
+package com.wipro.travelAgency.swathi.demo.service;
+
+import com.wipro.travelAgency.swathi.demo.entity.Payment;
+import com.wipro.travelAgency.swathi.demo.entity.PaymentResponse;
+
+public interface PaymentService {
+
+	Payment addPayment(Payment payment);
+
+//	Payment getById(Long id);
+
+	PaymentResponse getPaymentDetails(Long id);
+
+}

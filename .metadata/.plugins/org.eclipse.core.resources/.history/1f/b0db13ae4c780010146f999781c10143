@@ -1,0 +1,10 @@
+package com.wipro.swathi.demo.dto;
+
+
+public class PackageDTO {
+
+	private Long id;
+    private String destination;
+    private int days;
+    private double price;
+}

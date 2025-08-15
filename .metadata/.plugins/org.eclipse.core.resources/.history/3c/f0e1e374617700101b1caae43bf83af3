@@ -1,0 +1,23 @@
+package com.wipro.swathi.demo.entity;
+
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Booking {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Long userId;       // From User Service
+    private Long packageId;    // From Package Service
+    private LocalDate startDate;
+    private String status;     // confirmed, cancelled, pending, etc.
+}
+

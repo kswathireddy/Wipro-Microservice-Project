@@ -1,0 +1,5 @@
+package com.wipro.swathi.demo.dto;
+
+public class DestinationDTO {
+
+}

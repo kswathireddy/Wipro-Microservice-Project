@@ -1,0 +1,32 @@
+package com.wipro.swathi.demo.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.time.LocalDate;
+
+import com.wipro.swathi.demo.enums.Status;
+
+import jakarta.persistence.*;
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+public class Booking {
+
+    
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Long userId;       // From User Service
+    private Long packageId;    // From Package Service
+    private LocalDate startDate;
+    @Enumerated(EnumType.STRING)
+    private Status status;     // confirmed, cancelled, pending, etc.
+	
+}
+

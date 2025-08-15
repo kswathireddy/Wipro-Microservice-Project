@@ -1,0 +1,7 @@
+package com.wipro.swathi.demo.enums;
+
+public class Status {
+	CONFIRMED,
+	
+
+}

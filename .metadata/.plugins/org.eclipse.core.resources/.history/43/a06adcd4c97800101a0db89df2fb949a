@@ -1,0 +1,21 @@
+package com.wipro.swathi.demo.feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.wipro.swathi.demo.dto.DestinationDTO;
+import com.wipro.swathi.demo.entity.PackageTour;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+@FeignClient(name = "destination-service")
+public interface DestinationServiceClient {
+
+    @GetMapping("/api/v1/destination/getById/{id}")
+    Destination getById(@PathVariable("id") Long id);
+}
+

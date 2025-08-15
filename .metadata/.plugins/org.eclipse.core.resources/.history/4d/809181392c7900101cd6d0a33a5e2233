@@ -1,0 +1,16 @@
+package com.wipro.swathi.demo.repo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+
+import com.wipro.swathi.demo.entity.Booking;
+
+@Repository
+public interface BookingRepo extends JpaRepository<Booking, Long> {
+
+	Booking save(Booking bookingDTO);
+
+	
+
+}

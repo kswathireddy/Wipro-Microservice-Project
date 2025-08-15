@@ -1,0 +1,16 @@
+package com.wipro.swathi.demo.service;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import com.wipro.swathi.demo.entity.User;
+
+public interface UserService {
+
+	User addUser(User user);
+
+	
+
+	User getUserById(Long id);
+
+}

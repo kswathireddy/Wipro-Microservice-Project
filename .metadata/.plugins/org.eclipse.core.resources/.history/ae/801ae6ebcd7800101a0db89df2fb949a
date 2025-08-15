@@ -1,0 +1,51 @@
+package com.wipro.swathi.demo.service;
+
+import javax.print.attribute.standard.Destination;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.wipro.swathi.demo.dto.DestinationDTO;
+import com.wipro.swathi.demo.entity.PackageTour;
+import com.wipro.swathi.demo.feign.PackageInterfae;
+import com.wipro.swathi.demo.repo.PackageRepository;
+
+@Service
+public class PackageServiceImpl implements PackageService{
+	@Autowired
+	private PackageRepository packageRepository;
+	
+	@Autowired
+	private PackageInterfae packageInterface;
+
+	@Override
+	public PackageTour addPackage(PackageTour packages) {
+		// TODO Auto-generated method stub
+		return packageRepository.save(packages);
+	}
+
+	@Override
+	public PackageTour getById(Long id) {
+	    // Fetch package from DB
+	    PackageTour pack = packageRepository.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Package not found: " + id));
+
+	    
+	    Destination dest = packageInterface.getById(pack.getDestinationId());
+
+	    // Return a new PackageTour object with destination set
+	    return new PackageTour(pack.getId(), pack.getPackageName(), pack.getDestinationId(), dest);
+	}
+
+
+
+	@Override
+	public Page<PackageTour> getAll(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return packageRepository.findAll(pageable);
+	}
+
+	
+}

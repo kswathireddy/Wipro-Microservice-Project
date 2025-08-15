@@ -1,0 +1,23 @@
+package com.wipro.swathi.demo.dto;
+
+import java.time.LocalDate;
+
+import com.wipro.swathi.demo.entity.Booking;
+import com.wipro.swathi.demo.enums.Status;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
+	public class BookingDTO {
+	   private Booking booking;
+	    private UserDTO user;
+	    private PackageDTO packageDetails;
+		
+	}
+
+
+

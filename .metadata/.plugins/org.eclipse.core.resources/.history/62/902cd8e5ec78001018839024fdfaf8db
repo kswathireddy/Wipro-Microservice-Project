@@ -1,0 +1,46 @@
+package com.wipro.swathi.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.wipro.swathi.demo.entity.DestinationWrapper;
+import com.wipro.swathi.demo.entity.PackageTour;
+
+import com.wipro.swathi.demo.feign.Packagefeign;
+import com.wipro.swathi.demo.repo.PackageRepository;
+
+@Service
+public class PackageServiceImpl implements PackageService{
+	@Autowired
+	private PackageRepository packageRepository;
+	
+	@Autowired
+	private Packagefeign packageFeign;
+
+	@Override
+	public PackageTour addPackage(PackageTour packages) {
+		// TODO Auto-generated method stub
+		return packageRepository.save(packages);
+	}
+
+	@Override
+	public PackageTour getId(Long id) {
+		// TODO Auto-generated method stub
+		return packageRepository.findById(id).orElseThrow(()-> new RuntimeException("package not found:"+id));
+		
+	}
+
+	@Override
+	public Page<PackageTour> getAll(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return packageRepository.findAll(pageable);
+	}
+
+	
+
+	
+
+	
+}

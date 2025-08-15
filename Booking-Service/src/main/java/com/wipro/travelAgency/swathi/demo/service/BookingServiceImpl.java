@@ -1,0 +1,75 @@
+package com.wipro.travelAgency.swathi.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.wipro.travelAgency.swathi.demo.CustomException;
+import com.wipro.travelAgency.swathi.demo.entity.Booking;
+import com.wipro.travelAgency.swathi.demo.entity.BookingResponse;
+import com.wipro.travelAgency.swathi.demo.entity.PackageWrapper;
+import com.wipro.travelAgency.swathi.demo.entity.UserWrapper;
+import com.wipro.travelAgency.swathi.demo.enums.Status;
+import com.wipro.travelAgency.swathi.demo.feign.PackageFeign;
+import com.wipro.travelAgency.swathi.demo.feign.UserFeign;
+import com.wipro.travelAgency.swathi.demo.repo.BookingRepo;
+
+import feign.FeignException;
+
+@Service
+public class BookingServiceImpl implements BookingService {
+    
+    @Autowired
+    private BookingRepo bookingRepository;
+    
+    @Autowired
+     private UserFeign userFeign;
+     
+    @Autowired
+     private PackageFeign packageFeign;
+   
+
+   
+
+    @Override
+    public Booking cancel(Long id) {
+        Booking booking = bookingRepository.findById(id)
+                .orElseThrow(() -> new CustomException("Booking not found: " + id));
+
+        booking.setStatus(Status.CANCELLED);
+        return bookingRepository.save(booking);
+    }
+
+    @Override
+    public Booking addBooking(Booking bookingDTO) {
+        
+
+        return bookingRepository.save(bookingDTO);
+    }
+
+	@Override
+	public Booking getById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BookingResponse getBookingDetails(Long bookingId) {
+		 Booking booking = bookingRepository.findById(bookingId)
+	                .orElseThrow(() -> new RuntimeException("Booking not found with ID: " + bookingId));
+
+	        UserWrapper user = userFeign.getUserById(booking.getUserId());
+	        PackageWrapper packageInfo = packageFeign.getPackageById(booking.getPackageId());
+
+	        BookingResponse response = new BookingResponse();
+	        response.setBookingId(booking.getBookingId());
+	        response.setStatus(booking.getStatus());
+	        response.setStartDate(booking.getStartDate());
+	        response.setUser(user);
+	        response.setPackageInfo(packageInfo);
+
+	        return response;
+	}
+
+	
+	}
+

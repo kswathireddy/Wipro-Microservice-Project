@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.wipro.swathi.demo&apos; to &apos;com.wipro.travelAgency.swathi.demo&apos;&#x0D;&#x0A;- Original project: &apos;User-Service&apos;&#x0D;&#x0A;- Original element: &apos;User-Service/src/main/java/com.wipro.swathi.demo&apos;&#x0D;&#x0A;- Renamed element: &apos;User-Service/src/main/java/com.wipro.travelAgency.swathi.demo&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings&#x0D;&#x0A;- Rename subpackages of the package" description="Rename package &apos;com.wipro.swathi.demo&apos;" flags="589830" hierarchical="true" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.wipro.swathi.demo" name="com.wipro.travelAgency.swathi.demo" qualified="false" references="true" stamp="1755189313804" textual="false" version="1.0"/>
+</session>

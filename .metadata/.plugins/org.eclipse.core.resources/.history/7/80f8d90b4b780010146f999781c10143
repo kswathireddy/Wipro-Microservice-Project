@@ -1,0 +1,24 @@
+package com.wipro.swathi.demo.feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.wipro.swathi.demo.entity.Booking;
+
+@FeignClient(name="Package-Service")
+
+public interface BookingInterface {
+	@PostMapping("/addBooking")
+	public Booking addBooking(@RequestBody Booking booking);
+	
+	@GetMapping("/bookings/{id}")
+	public Booking getBookingId(@PathVariable Long id);
+	
+	@PutMapping("/{id}/cancel")
+	public Booking cancelBooking(@PathVariable Long id);
+
+}

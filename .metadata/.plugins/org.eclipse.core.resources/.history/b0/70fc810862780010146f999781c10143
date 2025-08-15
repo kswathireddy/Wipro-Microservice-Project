@@ -1,0 +1,26 @@
+package com.wipro.swathi.demo.entity;
+
+import com.wipro.swathi.demo.enums.Method;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Payment {
+
+	    private Long bookingId;
+	    private Long amount;
+	    @Enumerated(EnumType.STRING)
+	    private Method method;
+	    // getters and setters
+	
+
+
+}

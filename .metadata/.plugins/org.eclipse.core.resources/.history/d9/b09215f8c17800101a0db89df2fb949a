@@ -1,0 +1,12 @@
+package com.wipro.swathi.demo.dto;
+
+import lombok.Data;
+
+@Data
+public class PackageDTO {
+
+	private Long id;
+    private String destination;
+    private int days;
+    private double price;
+}

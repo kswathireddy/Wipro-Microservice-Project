@@ -1,0 +1,11 @@
+package com.wipro.swathi.demo.service;
+
+import com.wipro.swathi.demo.entity.Payment;
+
+public interface PaymentService {
+
+	Payment addPayment(Payment payment);
+
+	Payment getById(Long id);
+
+}

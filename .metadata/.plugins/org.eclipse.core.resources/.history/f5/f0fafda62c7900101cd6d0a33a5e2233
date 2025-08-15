@@ -1,0 +1,53 @@
+package com.wipro.swathi.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.wipro.swathi.demo.entity.User;
+import com.wipro.swathi.demo.repository.UserRepository;
+
+@Service
+public class UserServiceImpl implements UserService {
+	
+	@Autowired
+	private UserRepository userRepository;
+
+	@Override
+	public User addUser(User user) {
+		
+		return userRepository.save(user);
+	}
+
+	@Override
+	public User getUserById(Long id) {
+		// TODO Auto-generated method stub
+		return userRepository.findById(id).get();
+	}
+
+	@Override
+	public User updateUser(Long id, User user) {
+		
+		User existedUser=userRepository.findById(id).orElseThrow(()-> new RuntimeException("user not found with id:"+id));
+		existedUser.setEmail(user.getEmail());
+		existedUser.setName(user.getName());
+		existedUser.setRole(user.getRole());
+		return userRepository.save(existedUser);
+	}
+
+	@Override
+	public void deleteUser(Long id) {
+		userRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public Page<User> getUserById(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return userRepository.findAll(pageable);
+	}
+
+	
+
+}

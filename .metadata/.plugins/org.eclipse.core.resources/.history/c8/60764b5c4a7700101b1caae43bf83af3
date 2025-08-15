@@ -1,0 +1,9 @@
+package com.wipro.swathi.demo.feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(name="Destination_Service")
+public class DestinationInterface {
+	
+
+}

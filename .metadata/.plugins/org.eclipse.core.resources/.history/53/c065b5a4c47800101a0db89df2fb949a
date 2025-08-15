@@ -1,0 +1,17 @@
+package com.wipro.swathi.demo.feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import com.wipro.swathi.demo.dto.PackageTourDTO;
+
+
+@FeignClient(name = "Package-Service", path = "/api/v1/package")
+public interface PackageService {
+	
+	    
+	    @GetMapping("/getById/{id}")
+		public PackageTourDTO getById(@PathVariable Long id);
+	}
+
+

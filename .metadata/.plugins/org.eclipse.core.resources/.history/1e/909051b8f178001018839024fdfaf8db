@@ -1,0 +1,15 @@
+package com.wipro.swathi.demo.dto;
+
+import lombok.Data;
+
+@Data
+public class PackageTourDTO {
+
+
+
+	private Long id;
+	private String packageName;
+	private Long destionationId;
+	
+}
+

@@ -1,0 +1,8 @@
+package com.wipro.swathi.demo.enums;
+
+public enum Status {
+	PENDING,
+	CANCELLED,
+	CONFIRMED
+
+}
